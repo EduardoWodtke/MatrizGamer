@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .matrix {
+      font-family: Arial, sans-serif;
+      margin-bottom: 10px;
+    }
+    
+    .matrix-row {
+      display: flex;
+    }
+    
+    .matrix-element {
+      width: 30px;
+      height: 30px;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .trace {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="matrix">
+    <h2>A matriz informada é:</h2>
+    <div class="matrix-content"></div>
+  </div>
+  
+  <div class="trace">
+    <h2>O traço da matriz é:</h2>
+    <div class="trace-content"></div>
+  </div>
+
+  <script>
+    // Solicitar tamanho da matriz
+    const tamanho = parseInt(prompt("Informe o tamanho da matriz quadrada:"));
+
+    // Criar matriz vazia
+    const matriz = [];
+
+    // Preencher a matriz com os valores informados pelo usuário
+    for (let i = 0; i < tamanho; i++) {
+      matriz[i] = [];
+      for (let j = 0; j < tamanho; j++) {
+        const elemento = parseInt(prompt(`Informe o valor para a posição [${i + 1}][${j + 1}]:`));
+        matriz[i][j] = elemento;
+      }
+    }
+
+    // Calcular o traço da matriz
+    let traco = 0;
+    for (let i = 0; i < tamanho; i++) {
+      traco += matriz[i][i];
+    }
+
+    // Exibir a matriz informada
+    const matrixContent = document.querySelector(".matrix-content");
+    for (let i = 0; i < tamanho; i++) {
+      const row = document.createElement("div");
+      row.classList.add("matrix-row");
+      for (let j = 0; j < tamanho; j++) {
+        const element = document.createElement("div");
+        element.classList.add("matrix-element");
+        element.textContent = matriz[i][j];
+        row.appendChild(element);
+      }
+      matrixContent.appendChild(row);
+    }
+
+    // Exibir o traço da matriz
+    const traceContent = document.querySelector(".trace-content");
+    traceContent.textContent = traco;
+  </script>
+</body>
+</html>
